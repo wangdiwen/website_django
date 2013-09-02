@@ -1,0 +1,15 @@
+<html>
+<head><title>Welcome to Django World</title></head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<body>
+
+<!-- <p>example codes </p> -->
+<ul>
+{% for item in personal %}
+    <li>{{ item.my_id }} : 姓名 = {{ item.my_name}}, 年龄 = {{ item.my_age }}, 性别 = {{ item.my_sex }}, 个人签名 = {{ item.my_sign}}</li>
+{% endfor %}
+</ul>
+
+</body>
+</html>

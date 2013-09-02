@@ -1,0 +1,3 @@
+Author: wangdiwen
+Date  : 2013-08-27
+LGPL License

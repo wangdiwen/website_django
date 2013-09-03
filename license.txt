@@ -4,4 +4,5 @@ Mysite project is Open Source.
 
 Author: wangdiwen
 Date  : 2013-09-09
+Note: test something here
 Copyright (c) 2013 wangdiwen

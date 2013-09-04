@@ -1,15 +1,10 @@
-# Note: This is readme file for anyone to
-        know our project better.
+Note:
+This is our website template, for Python(Django) framework.
+It contains complete website structure of directory.
+And, it has frontend and backend URLs.
 
-        Thank you.
-        and good luck.
-        from wangdiwen.
+You can use MTV(like MVC) to develop your web project.
+As you know, this template is free to use. The license is LGPL or MITs.
 
-# Content of readme
-
-# Todo...
-=======
-mysite
-======
-
-This is our website template, for python(django) framework.
+Good Luck.
+From wangdiwen(dw_wang@126.com)

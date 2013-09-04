@@ -1,3 +1,7 @@
+Note:
+This is Mysite project license, and it contains "The MIT License (MIT)".
+Mysite project is Open Source.
+
 Author: wangdiwen
 Date  : 2013-08-27
-LGPL License
+Copyright (c) 2013 wangdiwen

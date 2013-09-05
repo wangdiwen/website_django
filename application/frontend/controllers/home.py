@@ -5,6 +5,7 @@
 import os
 import sys
 import json
+import datetime
 
 # import django env
 from django.http import HttpResponse
@@ -49,13 +50,48 @@ def my_table(request):
     # else:
     #     echo('no name')
 
-    query = obj.get_by_id(6)
+    # query = obj.get_by_id(6)
     # query = obj.get_all()
     # query = 'I love U, my lady'
 
+    # test message table
+    # ret = obj.live_message(3, 4, 'user 3 -> user 4 live message...', datetime.datetime.now())
+
+    query = obj.get_all_msg()
+    user_id_list = []
+    usered_id_list = []
+    if query:
+        for item in query:
+            user_id = item['msg_user_id']
+            usered_id = item['msg_usered_id']
+            if user_id > 0:
+                # print user_id
+                user_id_list.append(user_id)
+                usered_id_list.append(usered_id)
+
+    data = []
+    ret_user = obj.get_user_name_by_id_list(list(set(user_id_list)))
+    ret_usered = obj.get_user_name_by_id_list(list(set(usered_id_list)))
+    if ret_user and ret_usered:
+        for item in query:
+            user_id = item['msg_user_id']
+            usered_id = item['msg_usered_id']
+            item['msg_user_name'] = ''
+            item['msg_usered_name'] = ''
+
+            for user in ret_user:
+                if user['my_id'] == user_id:
+                    item['msg_user_name'] = user['my_name']
+                    break
+            for usered in ret_usered:
+                if usered['my_id'] == usered_id:
+                    item['msg_usered_name'] = usered['my_name']
+                    break
+            data.append(item)
+    return HttpResponse(echo_json(data))
+
     # test data
-    ret = echo_json(query)
-    return HttpResponse(ret)
+    return HttpResponse(echo_json(query))
 
     # return HttpResponse('测试一下中文')
     return render_to_response(template_name, {'personal': query})

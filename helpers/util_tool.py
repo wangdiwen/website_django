@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import re
+import datetime
 import collections
 
 from django.http import HttpResponse
@@ -22,7 +23,15 @@ def echo_json(query_set):
     # print str(type(query_set))
     if query_set:
         if type(query_set) == list:
-            data['Query_data'] = query_set
+            for item in query_set:
+                tmp_dict = {}
+                for key in item.keys():
+                    if type(item[key]) == datetime.datetime:
+                        tmp_dict[key] = item[key].strftime('%Y-%m-%d %H:%M:%S')
+                    else:
+                        tmp_dict[key] = item[key]
+                if tmp_dict:
+                    data['Query_data'].append(tmp_dict)
         elif type(query_set) == dict:
             data['Query_data'].append(query_set)
         elif type(query_set) == str:
@@ -32,7 +41,10 @@ def echo_json(query_set):
                 for item in query_set:
                     tmp_dict = {}
                     for key in item.keys():
-                        tmp_dict[key] = item[key]
+                        if type(item[key]) == datetime.datetime:
+                            tmp_dict[key] = item[key].strftime('%Y-%m-%d %H:%M:%S')
+                        else:
+                            tmp_dict[key] = item[key]
                     if tmp_dict:
                         data['Query_data'].append(tmp_dict)
         else:
